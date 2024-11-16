@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Maaf ya 🥺</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    .heart {
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      background-color: red;
+      transform: rotate(-45deg);
+      animation: float 2s ease-out forwards;
+    }
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 2rem;
+      height: 2rem;
+      background-color: red;
+      border-radius: 50%;
+    }
+    .heart::before {
+      top: -1rem;
+      left: 0;
+    }
+    .heart::after {
+      left: -1rem;
+      top: 0;
+    }
+    @keyframes float {
+      0% {
+        transform: scale(0.5) translateY(0);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(1.5) translateY(-150px);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body class="bg-pink-100 flex flex-col items-center justify-center min-h-screen relative">
+  <div class="text-center p-6">
+    <h1 class="text-4xl font-bold text-pink-600 mb-4">Maafin kayyy 😢</h1>
+    <p class="text-lg text-gray-700">Herey mungkul sumpah 😥</p>
+    <div class="my-6">
+      <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExOW4wZ3hteWViaHB5MHlqNGMzN3I3Zjd2NXJ0bmpkY2RmMng0dHRkMyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/dvxq3BtNLK6KEgTryW/giphy.webp" alt="crying gif" class="w-64 mx-auto rounded-md">
+    </div>
+    <p class="text-lg text-gray-700">Janji dah moal kitu deui</p>
+    <button 
+      onclick="apologyAccepted(event)"
+      class="mt-6 px-6 py-2 bg-pink-500 text-white rounded-full shadow-md hover:bg-pink-600 transition relative"
+    >
+      Okey di maapin
+    </button>
+    <div id="response" class="mt-4 text-xl font-semibold text-green-500 hidden">
+      Yeay! Makasih hehe 🌸
+    </div>
+  </div>
+
+  <script>
+    function apologyAccepted(event) {
+      document.getElementById('response').classList.remove('hidden');
+      
+      // Buat elemen hati
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      
+      // Tentukan posisi hati dari tombol yang diklik
+      const rect = event.target.getBoundingClientRect();
+      heart.style.left = rect.left + rect.width / 2 + 'px';
+      heart.style.top = rect.top + window.scrollY - 10 + 'px';
+      
+      // Tambahkan elemen hati ke body
+      document.body.appendChild(heart);
+      
+      // Hapus elemen hati setelah animasi selesai
+      setTimeout(() => {
+        heart.remove();
+      }, 2000);
+    }
+  </script>
+</body>
+</html>
